@@ -5,6 +5,15 @@
     "manifest_version": 3,
     "action": {
       "default_popup": "hello.html",
-      "default_icon": "q.png"
+ "default_icon": {
+      "16": "q.png",
+      "48": "q.png",
+      "128": "q.png"
     }
+  },
+  "icons": {
+    "16": "q.png",
+    "48": "q.png",
+    "128": "q.png"
   }
+}
