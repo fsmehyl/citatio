@@ -6,6 +6,32 @@ document.addEventListener("DOMContentLoaded", function () {
     const authorElement = document.getElementById("author");
     const newQuoteButton = document.getElementById("new-quote");
     const categorySelect = document.getElementById("category-select");
+    const themeToggleButton = document.getElementById("theme-toggle"); // NOVÉ: Odkaz na tlačidlo režimu
+    const pinButton = document.getElementById('pin-button');
+            const bodyElement = document.body;
+            let isPinned = false;
+
+            // Pridané: Vylepšená funkcionalita pre pripnutie okna
+            pinButton.addEventListener('click', () => {
+                isPinned = !isPinned;
+                pinButton.textContent = isPinned ? '📍' : '📌';
+                pinButton.classList.toggle('pinned', isPinned);
+                
+                if (isPinned) {
+                    // Vytvoríme nové okno s rovnakým obsahom
+                    const newWindow = window.open('', '_blank', 
+                        `width=${window.innerWidth},height=${window.innerHeight},left=${window.screenX},top=${window.screenY}`);
+                    
+                    // Skopírujeme obsah do nového okna
+                    newWindow.document.write(document.documentElement.outerHTML);
+                    
+                    // Zatvoríme pôvodné okno
+                    window.close();
+                    
+                    // Presunieme focus na nové okno
+                    newWindow.focus();
+                }
+            });
 
     // Funkcia na získanie názvu mesiaca v slovenčine
     function getMonthName(monthNumber) {
@@ -116,6 +142,56 @@ function loadQuote() {
         localStorage.setItem("lastDisplayDate", currentDate);
     }
 }
+
+
+    pinButton.addEventListener('click', () => {
+        isPinned = !isPinned;
+        pinButton.textContent = isPinned ? '📍' : '📌';
+        pinButton.classList.toggle('pinned', isPinned);
+        
+        if (isPinned) {
+            // Pokus o zabránenie zatvoreniu okna
+            window.addEventListener('blur', preventClose);
+        } else {
+            window.removeEventListener('blur', preventClose);
+        }
+    });
+    
+    function preventClose(e) {
+        // Táto funkcia zabráni strate focusu okna
+        window.focus();
+    }
+
+        // --- NOVÉ: Funkcie a logika pre Tmavý Režim ---
+
+    // Funkcia na aplikovanie témy
+    function applyTheme(theme) {
+        if (theme === 'dark') {
+            bodyElement.classList.add('dark-mode');
+            themeToggleButton.textContent = '☀️'; // Ikona na prepnutie na svetlý
+            themeToggleButton.title = 'Prepnúť na svetlý režim';
+        } else {
+            bodyElement.classList.remove('dark-mode');
+            themeToggleButton.textContent = '🌙'; // Ikona na prepnutie na tmavý
+            themeToggleButton.title = 'Prepnúť na tmavý režim';
+        }
+    }
+
+    // Funkcia na prepnutie témy
+    function toggleTheme() {
+        const currentTheme = bodyElement.classList.contains('dark-mode') ? 'light' : 'dark';
+        applyTheme(currentTheme);
+        localStorage.setItem('theme', currentTheme); // Ulož preferenciu
+    }
+
+    // Načítanie uloženej témy pri štarte
+    const savedTheme = localStorage.getItem('theme') || 'light'; // Predvolený je svetlý
+    applyTheme(savedTheme);
+
+    // --- Event Listeners ---
+
+    // Listener pre tlačidlo na prepnutie témy
+    themeToggleButton.addEventListener('click', toggleTheme);
 
     const savedCategory = localStorage.getItem("selectedCategory");
     if (savedCategory) {

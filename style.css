@@ -93,7 +93,96 @@ select:focus {
 }
 
 
+/* --- Štýly pre Tmavý režim --- */
+body.dark-mode {
+    background-color: #2c2c2c; /* Tmavé pozadie */
+    color: #e0e0e0; /* Svetlejší text */
+}
 
+body.dark-mode h2 {
+    color: #66b2ff; /* Svetlejšia modrá pre nadpis */
+}
+
+body.dark-mode select {
+    background-color: #444; /* Tmavší select */
+    color: #e0e0e0;
+    border-color: #666;
+}
+
+body.dark-mode #quote-container {
+    background-color: #3b3b3b; /* Tmavší kontajner citátu */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+body.dark-mode #author {
+    color: #bbb; /* Svetlejší autor */
+}
+
+body.dark-mode #quote {
+    color: #ffffff; /* Svetlejší text citátu */
+}
+
+body.dark-mode #date-info {
+    color: #aaa; /* Svetlejší text dátumu/mien */
+}
+
+/* Voliteľné: Mierne tmavšie tlačidlo v tmavom režime, ak treba */
+/* body.dark-mode #theme-toggle { */
+/* color: #ccc; */
+/* } */
+
+#theme-toggle,
+#pin-button {
+    position: absolute;
+    top: 0;
+    width: 45px;
+    height: 40px;
+    background-color: #036b4a; /* Crimson červená */
+    color: white;
+
+    /* --- Pridané/Upravené --- */
+    box-sizing: border-box; /* Zahrnie okraj do šírky/výšky elementu */
+    border: none; /* Zrušíme všeobecný okraj */
+    border-bottom: 2px solid #034e35; /* Okraj iba na spodku */
+    border-left: 2px solid #034e35; /* Okraj iba na pravej strane */ /* Pridaný okraj: 2px hrúbka, plný štýl, tmavočervená farba */
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.45); /* Výraznejší tieň: väčší posun (3px), väčšie rozmazanie (8px), tmavší (0.45) */
+    /* --- Koniec zmien --- */
+
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px; /* Možno bude potrebné upraviť veľkosť ikony, aby sa zmestila s okrajom */
+    border-radius: 0 0 6px 6px;
+    /* Upravená transition, aby zahŕňala aj zmenu farby okraja */
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s, border-color 0.3s;
+    z-index: 10;
+}
+
+/* Pozície zostávajú rovnaké vďaka box-sizing: border-box */
+#pin-button {
+    right: 0;
+}
+#theme-toggle {
+    right: 50px; /* (šírka 45px + medzera 5px) */
+}
+
+/* Upravený :hover efekt pre nové vlastnosti */
+#theme-toggle:hover,
+#pin-button:hover {
+    background-color: #a0102c; /* Tmavšia červená */
+    border-color: #610101; /* Ešte tmavšia červená pre okraj pri hoveri */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.55); /* Ešte výraznejší tieň pri hoveri */
+}
+
+/* Efekt pri kliknutí (tieň sa môže mierne zmenšiť) */
+#theme-toggle:active,
+#pin-button:active {
+    transform: translateY(1px);
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+}
 
 
 

@@ -1,7 +1,7 @@
 {
     "name": "Citatio",
     "description": "Toto rozšírenie vám každý deň prinesie inšpiratívny citát spolu s aktuálnym dátumom a meninami.",
-    "version": "1.0",
+    "version": "1.2",
     "manifest_version": 3,
     "action": {
       "default_popup": "hello.html",

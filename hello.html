@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Denný Citát</title>
+    <title>Citatio</title>
     <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
+    <button id="theme-toggle" title="Prepnúť režim">🌙</button>
+    <button id="pin-button" title="Pripnúť okno">📌</button>
 
-    <h2>📜 Dnešný citát</h2>
-
+    <br><br><br>
     <select id="category-select">
-        <option value="Všetky">🗂️ Všetky kategórie</option>
+        <option value="all">🗂️ Všetky kategórie</option> 
         <option value="Život">🌱 Život</option>
         <option value="Motivácia">🚀 Motivácia</option>
         <option value="Šťastie">😊 Šťastie</option>
@@ -25,17 +26,15 @@
         <option value="Rodina">👨‍👩‍👧‍👦 Rodina</option>
         <option value="Zvieratá">🐷 Zvieratá</option>
         <option value="Ľudia">🧍‍♂️ Ľudia</option>
-        
-
     </select>
+
+    
 
     <div id="quote-container">
         <p id="quote">Načítavam...</p>
         <p id="author"></p>
     </div>
     
-    
-
     <script type="module" src="popup.js"></script>
 </body>
 </html>
